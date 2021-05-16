@@ -3,66 +3,42 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-var player = 'X';
-
-var isEnd = false;
-
 class Square extends React.Component {
-  constructor(props) {
-     super(props);
-     this.state = {
-       value: null,
-     }
-  }
   render() {
     return (
-      <div>
-        <button 
-           style={{width:"50px",height:"50px",backgroundColor:"white",fontSize:"x-large"}}
-           onClick={() => this.setState({value:'X'})}>
-           {this.state.value}
-        </button>
-      </div>
+       <button style={{backgroundColor:"white",width:"50px",height:"50px"}} onClick={this.props.onClick}>
+         {this.props.value}
+       </button>
     );
   };
 }
-
-let renderSquare = (_squareId) => {
-   return (
-     <Square />
-   );
-};
-
-let renderRow = (_squareId) => {
-  return (
-    <div style={{display:"flex",flexDirection:"row"}}>
-         {renderSquare(_squareId)}
-         {renderSquare(_squareId+1)}
-         {renderSquare(_squareId+2)}
-    </div>
-  );
-};
 class Board extends React.Component {
   render() {
     return (
-      <div>
-         {renderRow(1)}
-         {renderRow(4)}
-         {renderRow(7)}
-      </div>
-  );
+       <div>
+         <div style={{display:"flex",flexDirection:"row"}}>
+             <Square></Square>
+             <Square></Square>
+             <Square></Square>
+         </div>
+         <div style={{display:"flex",flexDirection:"row"}}>
+             <Square></Square>
+             <Square></Square>
+             <Square></Square>
+         </div>
+         <div style={{display:"flex",flexDirection:"row"}}>
+             <Square></Square>
+             <Square></Square>
+             <Square></Square>
+         </div>
+       </div>
+    );
   };
 }
-
 class Game extends React.Component {
   render() {
     return (
-      <div className="game">
-        <p>
-           It is {player}'s turn
-         </p>
-        <Board />
-      </div>
+        <Board></Board>
     );
   };
 }
