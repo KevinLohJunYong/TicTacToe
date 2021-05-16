@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-var player = 'X';
+var player = 'O';
 
 class Square extends React.Component {
   render() {
@@ -28,8 +28,13 @@ class Board extends React.Component {
     this.setState({squares: squares});
   }
   render() {
+    player = player === 'X' ? 'O' : 'X';
+    const status = "It is " + player + "'s" + " turn";
     return (
        <div>
+         <div style={{fontSize:"x-large",marginBottom:"10px"}}>
+           {status}
+         </div>
          <div style={{display:"flex",flexDirection:"row"}}>
              <Square
                 onClick={()=>this.handleClick(0)}
